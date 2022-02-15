@@ -9,16 +9,35 @@ import { Component, OnInit } from '@angular/core';
   //select by atribute Ex: selector: '[app-servers]' in html <div app-servers></div>
   //select by class Ex: selector: '.app-servers' in html <div class="app-servers"></div>
   selector: 'app-servers',
-  template: `
-  <app-server></app-server>
-  <app-server></app-server>`,
+  //template: `
+  //<app-server></app-server>
+  //<app-server></app-server>`,
+  templateUrl: './servers.component.html',
   styleUrls: ['./servers.component.css']
 })
 export class ServersComponent implements OnInit {
 
-  constructor() { }
+  allowNewServer = false;
+  serverCreationStatus = 'No Server Was Created';
+  serverName = '';
+
+  constructor() { 
+    // on construction after 2 seconds set allowNewServer to true
+    setTimeout(() => {
+      this.allowNewServer = true;
+    }, 2000);
+  }
 
   ngOnInit(): void {
+  }
+
+  onCreateServer() {
+    this.serverCreationStatus = 'Server ' + this.serverName + ' Was Created';
+  }
+
+  //sets server name to user input
+  onUpdateServerName(event: Event) {
+    this.serverName = (<HTMLInputElement>event.target).value;
   }
 
 }
