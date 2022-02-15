@@ -1,2 +1,28 @@
+<!--$event: reserved word that gives access to event data
+this can be used to pass and use data with event binding-->
+<!-- <input
+    type="text"
+    class="form-control"
+    (input)="onUpdateServerName($event)"> -->
+
+<!-- Two-way data binding: trigger on input event and update value 
+it will also update the value if you change it somewere else-->
+<label>Server Name</label>
+    <input
+    type="text"
+    class="form-control"
+    [(ngModel)]="serverName">    
+    <!-- <p>{{ serverName }}</p> -->
+<!--property binding: set disabled atribute based on ts value
+(if allowNewServer is not true disable the button)-->
+<!--event binding: execute funtion on click event-->
+<button class="btn btn-primary" 
+        [disabled]="!allowNewServer"
+        (click)="onCreateServer()"
+>Add Server</button>
+<!--string interpolation: set the value of an atribute based on ts value
+inner text of p = allowNewServer
+Ex: <p [innerText]="allowNewServer"></p>-->
+<p [innerText]="serverCreationStatus"></p>
 <app-server></app-server>
 <app-server></app-server>
