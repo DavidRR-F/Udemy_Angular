@@ -20,6 +20,8 @@ export class ServersComponent implements OnInit {
   allowNewServer = false;
   serverCreationStatus = 'No Server Was Created';
   serverName = '';
+  serverCreated = false;
+  servers = ['Testserver', 'Testserver 2'];
 
   constructor() { 
     // on construction after 2 seconds set allowNewServer to true
@@ -33,6 +35,8 @@ export class ServersComponent implements OnInit {
 
   onCreateServer() {
     this.serverCreationStatus = 'Server ' + this.serverName + ' Was Created';
+    this.serverCreated = true;
+    this.servers.push(this.serverName);
   }
 
   //sets server name to user input

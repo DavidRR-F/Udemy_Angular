@@ -23,6 +23,15 @@ it will also update the value if you change it somewere else-->
 <!--string interpolation: set the value of an atribute based on ts value
 inner text of p = allowNewServer
 Ex: <p [innerText]="allowNewServer"></p>-->
-<p [innerText]="serverCreationStatus"></p>
-<app-server></app-server>
-<app-server></app-server>
+<!-- <p [innerText]="serverCreationStatus"></p> -->
+<!--if statment with else-->
+<p *ngIf="serverCreated; else noServer">
+    Server {{ serverName }} was created
+</p>
+<!--else statement-->
+<ng-template #noServer>
+    <p>No server was created</p>
+</ng-template>
+<!--for loop for each server in server array-->
+<app-server *ngFor="let server of servers"></app-server>
+
