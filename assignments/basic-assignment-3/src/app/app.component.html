@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <button (click)="toggleDisplay()">
+        Display Details
+      </button>
+      <p *ngIf="displayStatus">
+        Some details about some stuff about some project.
+      </p>
+      <div *ngFor="let click of clickLog"
+           [ngStyle]="{backgroundColor: click >= 5 ? 'blue' : 'transparent'}"
+           [ngClass]="{text: click >= 5}"
+      >
+        {{ click }}
+      </div>
+    </div>
+  </div>
+</div>

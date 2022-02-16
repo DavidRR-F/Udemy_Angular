@@ -1,3 +1,8 @@
 <!--String intepolation: Reference stings, ts variable/functions in {{}} to dynamically add to html
 Ex: <h4>{{ 'Server' }} with ID {{ serverId }} is {{ getServerStatus() }}</h4>-->
-<h4>{{ 'Server' }} with ID {{ serverId }} is {{ getServerStatus() }}</h4>
+<!--property binding with ngStyle and ng Class (binding to property of directive)-->
+<h4 [ngStyle]="{backgroundColor: getColor()}"
+    [ngClass]="{online: serverStatus === 'online'}"
+>
+    {{ 'Server' }} with ID {{ serverId }} is {{ getServerStatus() }}
+</h4>
