@@ -32,6 +32,7 @@ Ex: <p [innerText]="allowNewServer"></p>-->
 <ng-template #noServer>
     <p>No server was created</p>
 </ng-template>
-<!--for loop for each server in server array-->
+<!--for loop for each server in server array
+can use ; let i = index to use index value from for loop-->
 <app-server *ngFor="let server of servers"></app-server>
 
