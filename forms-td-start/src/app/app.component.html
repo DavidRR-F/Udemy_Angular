@@ -1,0 +1,110 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <!--fire event when form is sumbitted by using local reference and passing the form 
+      to a function call or Viewchild variable and setting local ref equal to ngForm-->
+      <form 
+        (ngSubmit)="onSubmit()" #f="ngForm">
+        <!--ngModelGroup groups the input data in the ngForm value object
+        and can get access toobject by adding local reference-->
+        <div 
+          id="user-data" 
+          ngModelGroup="userData"
+          #userData="ngModelGroup"
+        >
+          <div class="form-group">
+            <label for="username">Username</label>
+            <!--add ngModel to tell angular the input is a control of the form (also needs a name)-->
+            <input 
+              type="text" 
+              id="username" 
+              class="form-control" 
+              ngModel
+              name="username"
+              required
+              #username="ngModel"
+            >
+          </div>
+          <span class="help-block" *ngIf="!username.valid && username.touched">
+            valid username required</span>
+          <button 
+            class="btn btn-default" 
+            type="button"
+            (click)="suggestUserName()"
+          >Suggest an Username</button>
+          <div class="form-group">
+            <label for="email">Mail</label>
+            <!--email is a directive to check for valid email
+            directives will update ngForm value param to true if inputs are correct-->
+            <input 
+              type="email" 
+              id="email" 
+              class="form-control"
+              ngModel
+              name="email"
+              required
+              email
+              #email="ngModel"
+            >
+          </div>
+          <!--local variable set to ngModel to get the form params on input -->
+          <span class="help-block" *ngIf="!email.valid && email.touched">
+            valid email required</span>
+        </div>
+        <span class="help-block" *ngIf="!userData.valid && userData.touched">
+          User Data Invalid</span>
+        <div class="form-group">
+          <!--use a default value in ts to property bind (one way binding) 
+            to ngModel a defualt value-->
+          <label for="secret">Secret Questions</label>
+          <select 
+            id="secret" 
+            class="form-control"
+            [ngModel]="defaultQuestion"
+            name="secret"  
+          >
+            <option value="pet">Your first Pet?</option>
+            <option value="teacher">Your first teacher?</option>
+          </select>
+        </div>
+        <!--2 way binding gets snapshot of value on submit-->
+        <div class="form-group">
+          <textarea 
+            name="questionAnswer" 
+            rows="3"
+            class="form-control"
+            [(ngModel)]="answer"
+          ></textarea>
+          <p>Your Answer: {{ answer }}</p>
+          <div class="radio" *ngFor="let gender of genders">
+              <label>
+                <input 
+                  type="radio"
+                  name="gender"
+                  [ngModel]="defaultGender"
+                  [value]="gender"
+                >
+                {{ gender }}
+              </label>
+          </div>
+        </div>
+        <!--disable button if form is not valid-->
+        <button 
+          class="btn btn-primary" 
+          type="submit"
+          [disabled]="!f.valid"
+        >Submit</button>
+      </form>
+    </div>
+  </div>
+  <div class="row" *ngIf="submitted">
+    <div class="col-xs-12">
+      <h3>Your Data</h3>
+      <p>Username: {{user.username}}</p>
+      <p>Email: {{user.email}}</p>
+      <p>Secret Question: {{user.secretQuestion}}</p>
+      <p>Answer: {{user.answer}}</p>
+      <p>Gender: {{user.gender}}</p>
+    </div>
+  </div>
+</div>
