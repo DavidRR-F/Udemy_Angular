@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <ul class="nav nav-tabs">
+        <!--set active class in css with routerLinkActive
+        routerLinkActiveOption makes active class only true if its the exact path not just in the path-->
+        <li role="presentation">
+          <a routerLink="/" 
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}"
+          >Home</a></li>
+        <!--excluding '/' makes it a relative path instead of an absolute path
+        i.e. will be appended to current path (or use ./servers)-->
+        <li role="presentation"><a routerLink="servers" routerLinkActive="active">Servers</a></li>
+        <!--can use for multiple paths-->
+        <li role="presentation"><a [routerLink]="['/users']" routerLinkActive="active">Users</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</div>

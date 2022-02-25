@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form 
+        [formGroup]="prodForm"
+        (ngSubmit)="onSubmit()">
+        <div formGroupName="projectInfo">
+
+          <div class="form-group">
+            <label for="name">Project: </label>
+              <input 
+                type="text" 
+                id="name"
+                class="form-control"
+                formControlName="name"
+                >
+          </div>
+          <span 
+          *ngIf="!prodForm.get('projectInfo.name').valid && prodForm.get('projectInfo.name').touched"
+          class="help-block">Invalid Name</span>
+          <div class="form-group">
+            <label for="email">Email: </label>
+              <input 
+                type="text" 
+                id="email"
+                class="form-control"
+                formControlName="email"
+                >            
+          </div>
+          <span 
+          *ngIf="!prodForm.get('projectInfo.email').valid && prodForm.get('projectInfo.email').touched"
+          class="help-block">Invalid Email</span>
+        </div>
+
+        <div class="form-group">
+          <label for="status">Status: </label>
+          <select 
+            name="status" 
+            id="status" 
+            class="form-control"
+            formControlName="status">
+            <option value="stable">Stable</option>
+            <option value="critical">Critical</option>
+            <option value="finished">Finished</option>
+          </select>
+        </div>
+
+        <button type="submit" 
+        class="btn btn-primary"
+        [disabled]="!prodForm.get('projectInfo.name').valid || !prodForm.get('projectInfo.email').valid"
+        >Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
