@@ -1,0 +1,33 @@
+<!--find built in pipes at: angular.io/docs/api/#!?query=pipe-->
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <label for="status">Filter By Status: </label>
+      <input id="status" type="text" [(ngModel)]="filterStatus">
+      <br>
+      <button class="btn btn-primary" (click)="onAddServer()">Add Server</button>
+      <br><br>
+      <!--async recognizes observables and promises and outputs on completion-->
+      <h2>App Status: {{ appStatus | async }}</h2>
+      <hr>
+      <ul class="list-group">
+        <!--custom filter pipe in for loop-->
+        <li
+          class="list-group-item"
+          *ngFor="let server of servers | filter:filterStatus"
+          [ngClass]="getStatusClasses(server)">
+          <span
+            class="badge">
+            {{ server.status }}
+          </span>
+          <!--custom pipe (can chain params if multiple)-->
+          <strong>{{ server.name | shorten:10 }}</strong> | 
+          <!--predefined pipe-->
+          {{ server.instanceType | uppercase }} | 
+          <!--add param to predefined pipe-->
+          {{ server.started | date:'fullDate' | uppercase }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
